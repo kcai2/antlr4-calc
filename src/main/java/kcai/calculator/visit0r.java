@@ -182,12 +182,16 @@ public class visit0r extends calculatorBaseVisitor<Double> {
     
     /*****************************************************************************************************8
      * requires fix!!!! returns null when parenthesis are involved...
+     * UPDATE: WORKS FOR NOW... MAY CAUSE PROBLEMS LATER???
      ****************************************************************************************************/
     @Override
     public Double visitBraces(calculatorParser.BracesContext ctx) {
         System.out.println("parenthesis calle?");
         // returns null...
-        return visitChildren(ctx);
+        //return visitChildren(ctx);
+        
+        // skips to expression..? but seemingly works
+        return visit(ctx.expr());
     }   
     
     /***********************************************************************************************
@@ -199,6 +203,7 @@ public class visit0r extends calculatorBaseVisitor<Double> {
         
         return 1.0;
     }
+    
     
     
 
