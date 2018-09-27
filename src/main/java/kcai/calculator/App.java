@@ -1,17 +1,15 @@
 package kcai.calculator;
 
-
-
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import org.jline.reader.LineReader;
-import org.jline.reader.LineReaderBuilder;
-import org.jline.reader.UserInterruptException;
-import org.jline.terminal.TerminalBuilder;
-import org.jline.terminal.Terminal;
-import org.jline.reader.EndOfFileException;
+//import org.jline.reader.LineReader;
+//import org.jline.reader.LineReaderBuilder;
+//import org.jline.reader.UserInterruptException;
+//import org.jline.terminal.TerminalBuilder;
+//import org.jline.terminal.Terminal;
+//import org.jline.reader.EndOfFileException;
 
 // for GUI astree visual
 //import javax.swing.JFrame;
@@ -21,33 +19,16 @@ import org.jline.reader.EndOfFileException;
 public class App 
 {
     public static void main (String[] args) throws Exception {
-        visit0r visit = new visit0r();
-        LineReader read = LineReaderBuilder.buider().build();
-        String equation = "Enter your math problem or expression: ";
-        while(true) {
-            String line = null;
-            try {
-                line = read.readLine(equation);
-                calculatorParser parser = visit0r.createParser(line);
-                ParseTree ptree = parser.prog();
-                Double result = visit.visit(ptree);
-                if (result != null) System.out.println(result);
-            } catch (UserInterruptException e) {
-                
-            } catch (EndOfFileException e) {
-                return;
-            }
-        }
         
-//        ANTLRInputStream input = new ANTLRInputStream(System.in);
-//        calculatorLexer lexer = new calculatorLexer(input);
-//        CommonTokenStream tokens = new CommonTokenStream(lexer);
-//        calculatorParser parser = new calculatorParser(tokens);
-//        ParseTree ptree = parser.prog();
-//        
-//        visit0r visit = new visit0r();
-//        Double result = visit.visit(ptree);
-//        System.out.println(result);
+        ANTLRInputStream input = new ANTLRInputStream(System.in);
+        calculatorLexer lexer = new calculatorLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        calculatorParser parser = new calculatorParser(tokens);
+        ParseTree ptree = parser.prog();
+        
+        visit0r visit = new visit0r();
+        Double result = visit.visit(ptree);
+        System.out.println(result);
     
         
         /***************************************************************************************************
